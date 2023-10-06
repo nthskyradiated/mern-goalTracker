@@ -82,7 +82,7 @@ function Login() {
 
             <div className="form-group">
             <input 
-            type="pasword"
+            type="password"
             className="form-control"
             id="password"
             name="password"

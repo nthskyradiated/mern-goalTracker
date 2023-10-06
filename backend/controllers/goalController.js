@@ -38,16 +38,16 @@ const updGoal =  asyncHandler(async (req, res) => {
         res.status(400)
         throw new Error ('goal not found')
     }
-    const user = await User.findById(req.user.id)
+    // const user = await User.findById(req.user.id) // this one as well. reference Brad's 4th vid
 
     //check for user
-    if (!user) {
+    if (!req.user) {
       res.status(401)  
         throw new Error ('user not found')
     }
 
         //logged in user should match the goal-user
-    if(goal.user.toString() !== user.id) {
+    if(goal.user.toString() !== req.user.id) {
         res.status(401)  
         throw new Error ('unauthorized Request')
     }
@@ -66,16 +66,16 @@ const rmGoal =  asyncHandler(async (req, res) => {
         throw new Error ('goal not found')
     }
 
-    const user = await User.findById(req.user.id)
+    // const user = await User.findById(req.user.id) // this too
 
     //check for user
-    if (!user) {
+    if (!req.user) {
       res.status(401)  
         throw new Error ('user not found')
     }
 
         //logged in user should match the goal-user
-    if(goal.user.toString() !== user.id) {
+    if(goal.user.toString() !== req.user.id) {
         res.status(401)  
         throw new Error ('unauthorized Request')
     }
